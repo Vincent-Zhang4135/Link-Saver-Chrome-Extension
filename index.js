@@ -2,12 +2,17 @@ const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 
-let myLinks = []
+let allLinks = JSON.parse(localStorage.getItem("myLinks"))
+if (allLinks) {
+    myLinks = allLinks
+    renderLinks()
+}
 
 inputBtn.addEventListener("click", function() {
     value = inputEl.value
     if (value) {
         myLinks.push(value)
+        localStorage.setItem("myLinks", JSON.stringify(myLinks))
         renderLinks()
     }
     inputEl.value = ""
@@ -22,6 +27,5 @@ function renderLinks() {
                         </a>
                       </li>`
     }
-
     ulEl.innerHTML = listItems
 }
