@@ -2,11 +2,12 @@ const deleteBtn = document.getElementById("delete-btn")
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
+const allLinks = JSON.parse(localStorage.getItem("myLinks"))
 
-let allLinks = JSON.parse(localStorage.getItem("myLinks"))
+myLinks = []
 if (allLinks) {
-    myLinks = allLinks
-    renderLinks()
+    let myLinks = allLinks
+    render(myLinks)
 }
 
 inputBtn.addEventListener("click", function() {
@@ -14,23 +15,23 @@ inputBtn.addEventListener("click", function() {
     if (value) {
         myLinks.push(value)
         localStorage.setItem("myLinks", JSON.stringify(myLinks))
-        renderLinks()
+        render(myLinks)
     }
     inputEl.value = ""
 })
 
-deleteBtn.addEventListener("click", function() {
+deleteBtn.addEventListener("dblclick", function() {
     localStorage.clear()
     myLinks = []
-    renderLinks()
+    render(myLinks)
 })
 
-function renderLinks() {
+function render(links) {
     let listItems = ""
-    for (let i = 0; i < myLinks.length; i++) {
+    for (let i = 0; i < links.length; i++) {
         listItems += `<li>
-                        <a href ='${myLinks[i]}' target='_blank'>
-                        ${myLinks[i]}
+                        <a href ='${links[i]}' target='_blank'>
+                        ${links[i]}
                         </a>
                       </li>`
     }
