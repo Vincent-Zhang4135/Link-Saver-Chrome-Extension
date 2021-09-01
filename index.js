@@ -2,23 +2,23 @@ const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 
-let myLeads = []
+let myLinks = []
 
 inputBtn.addEventListener("click", function() {
     value = inputEl.value
     if (value) {
-        myLeads.push(value)
-        renderLeads()
+        myLinks.push(value)
+        renderLinks()
     }
     inputEl.value = ""
 })
 
-function renderLeads() {
+function renderLinks() {
     let listItems = ""
-    for (let i = 0; i < myLeads.length; i++) {
+    for (let i = 0; i < myLinks.length; i++) {
         listItems += `<li>
-                        <a href ='${myLeads[i]}' target='_blank'>
-                        ${myLeads[i]}
+                        <a href ='${myLinks[i]}' target='_blank'>
+                        ${myLinks[i]}
                         </a>
                       </li>`
     }
