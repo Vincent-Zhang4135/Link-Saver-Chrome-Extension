@@ -1,3 +1,4 @@
+const deleteBtn = document.getElementById("delete-btn")
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
@@ -16,6 +17,12 @@ inputBtn.addEventListener("click", function() {
         renderLinks()
     }
     inputEl.value = ""
+})
+
+deleteBtn.addEventListener("click", function() {
+    localStorage.clear()
+    myLinks = []
+    renderLinks()
 })
 
 function renderLinks() {
