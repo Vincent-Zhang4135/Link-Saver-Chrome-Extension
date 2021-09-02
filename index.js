@@ -1,12 +1,13 @@
-const deleteBtn = document.getElementById("delete-btn")
-const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
+const inputBtn = document.getElementById("input-btn")
+const tabBtn = document.getElementById("tab-btn")
+const deleteBtn = document.getElementById("delete-btn")
 const ulEl = document.getElementById("ul-el")
 const allLinks = JSON.parse(localStorage.getItem("myLinks"))
 
-myLinks = []
+let myLinks = []
 if (allLinks) {
-    let myLinks = allLinks
+    myLinks = allLinks
     render(myLinks)
 }
 
@@ -18,6 +19,15 @@ inputBtn.addEventListener("click", function() {
         render(myLinks)
     }
     inputEl.value = ""
+})
+
+tabBtn.addEventListener("click", function() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        myLinks.push(tabs[0].url)
+        localStorage.setItem("myLinks", JSON.stringify(myLinks))
+        render(myLinks)
+        
+    })
 })
 
 deleteBtn.addEventListener("dblclick", function() {
